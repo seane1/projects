@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Open+Sans:300,400,600,700|Source+Code+Pro");
+@font-face{font-family: Heading;src: url(MagistralC-Bold.otf);}
+body{background-color: #141921;background-image: url(circle.svg);background-repeat: repeat;background-size: 5px;font-family:"Open Sans";}
+header{color:white;text-align:center;font-family:Heading;}
+main{}
+h2{color:white;padding:10px;font-family:Heading;text-align:left;}
+.grid-container {display: grid;grid-template-columns: auto auto auto auto auto;background-color:white;}
+.grid-item{padding:20px;border-bottom: 1px solid WhiteSmoke;}
+.heading{font-weight:bold;font-size:20px;font-family:Heading;background-color:WhiteSmoke;  position: -webkit-sticky; /* Safari */position: sticky;top: 0;}
+.date{font-size:20px;}
+.status-container{display: grid;grid-template-columns: auto auto;background-color:black;}
+.status-item{padding:20px;}
+#statussocket{color:white;text-align:center;}
+.errordate{color:white;}
+.today{color:red;}
+.server{font-size:30px;color:red;}
+.login-form{color:white;text-align:center;}
+#barchart{overflow:hidden;}
+@media only screen and (max-width: 1000px) {
+	body{margin:0px;border:0px;padding:0px;}
+	header img{width:40%;}
+	h1{font-size:25px;}
+	h2{font-size:20px;}
+	.grid-item{font-size:13px;padding:15px;}
+	.heading{font-size:16px;}
+	.date{font-size:16px;}
+}
+@media only screen and (max-width: 600px) {
+	body{margin:0px;border:0px;padding:0px;}
+	header img{width:100%;}
+	h1{font-size:30px;}
+	h2{font-size:25px;}
+	#facility{font-size:20px;width:100%;}
+	.grid-container {grid-template-columns: auto auto;}
+	.grid-item{font-size:17px;padding:15px;}
+	.heading{font-size:20px;}
+	.date{font-size:16px;width:100%;}
+	#date{width:100%;}
+	.trackid{display:none;}
+	.eventlevel{display:none;}
+	.details{display:none;}
+	.status-item{font-size:20px;}
+}

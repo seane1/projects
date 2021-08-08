@@ -1,0 +1,77 @@
+<html>
+<head>
+<style>
+body{font-family:sans-serif;border:0px;padding:0px;margin:0px;background:black;}
+button{color:white;background:black;border:white solid 1px;font-size:20px;padding: 10px 30px;}
+button:hover{color:black;background:white;}
+button:active{color:white;background:black;}
+.menu{}
+.container{display:grid;grid-template-columns: auto auto auto;color:white;font-weight:bold;}
+.block{background:white;color:black;font-weight:normal;padding:1px;}
+@media only screen and (max-width: 1000px) {
+	.container{grid-template-columns: auto auto;)
+}
+</style>
+</head>
+<div class="menu">
+<button onclick="caringCaribou()">CC</button>
+</div>
+<div id="1" class="container"></div>
+<div id="2" class="container"></div>
+<div id="3" class="container"></div>
+<div id="4" class="container"></div>
+<div id="5" class="container"></div>
+<div id="6" class="container"></div>
+<div id="7" class="container"></div>
+<div id="8" class="container"></div>
+<div id="9" class="container"></div>
+<div id="10" class="container"></div>
+<script>
+function caringCaribou(){
+	for(var k = 1; k < 11; k++){
+		document.getElementById(k).innerHTML = "";
+	}
+
+	var server = "192.168.75.87";
+	var port = "30000";
+	var i = 0;
+	var htmlstring = "";
+	var check = "";
+
+	let socket = new WebSocket("ws://"+server+":"+port);
+
+	socket.onopen = function(e) {
+	  //alert("[open] Connection established");
+	};
+
+	socket.onmessage = function(event) {
+	  //alert(`[message] Data received from server: ${event.data}`);
+	  i++;
+	  check = event.data.substr(1,7);
+	  if(check == 'Sending'){
+		const myArr = event.data.split("Sending");
+		for(var j = 1; j < myArr.length; j++){
+			htmlstring = htmlstring + '<div class="block">' + myArr[j] + '</div>';
+			document.getElementById(i).innerHTML = htmlstring;
+		}
+	  }else{
+		document.getElementById(i).innerHTML = event.data;
+	  }
+	};
+
+	socket.onclose = function(event) {
+	  if (event.wasClean) {
+		alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+	  } else {
+		// e.g. server process killed or network down
+		// event.code is usually 1006 in this case
+		//alert('[close] Connection died');
+	  }
+	};
+
+	socket.onerror = function(error) {
+	  alert(`[error] ${error.message}`);
+	};
+}
+</script>
+</html>
